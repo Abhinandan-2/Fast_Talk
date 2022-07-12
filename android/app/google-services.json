@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "848166580703",
+    "project_id": "fast-talk-8a0e2",
+    "storage_bucket": "fast-talk-8a0e2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:848166580703:android:49f2e9b464664cec17546a",
+        "android_client_info": {
+          "package_name": "com.abhinandankumar.fast_talk"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "848166580703-0chp4ftuf9or359jr3qrorff1iui1de2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDkVK4hE1eMNayJ7oYRk3Ib12eG1WkaEIA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "848166580703-0chp4ftuf9or359jr3qrorff1iui1de2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
