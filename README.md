@@ -1,4 +1,4 @@
-# fast_talk
+# Fast Talk
 
 A new Flutter project.
 
