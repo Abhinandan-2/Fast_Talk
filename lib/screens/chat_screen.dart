@@ -3,6 +3,9 @@ import 'package:fast_talk/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+final _firesotre = FirebaseFirestore.instance;
+late User loggedInUser;
+
 class ChatScreen extends StatefulWidget {
   static const id = 'chat';
   @override
@@ -10,10 +13,11 @@ class ChatScreen extends StatefulWidget {
 }
 
 class _ChatScreenState extends State<ChatScreen> {
+  final messageTextController = TextEditingController();
   final _auth = FirebaseAuth.instance;
-  late User loggedInUser;
+
   late String textMessage;
-  final _firesotre = FirebaseFirestore.instance;
+
   @override
   void initState() {
     super.initState();
@@ -31,14 +35,6 @@ class _ChatScreenState extends State<ChatScreen> {
     }
   }
 
-  void messagesStream() async {
-    await for (var snapshot in _firesotre.collection('messages').snapshots()) {
-      for (var message in snapshot.docs) {
-        print(message.data());
-      }
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,9 +44,8 @@ class _ChatScreenState extends State<ChatScreen> {
           IconButton(
               icon: Icon(Icons.logout),
               onPressed: () {
-                messagesStream();
-                // _auth.signOut();
-                // Navigator.pop(context);
+                _auth.signOut();
+                Navigator.pop(context);
               }),
         ],
         title: Text('⚡️Chat'),
@@ -61,29 +56,7 @@ class _ChatScreenState extends State<ChatScreen> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            StreamBuilder<QuerySnapshot>(
-              stream: _firesotre.collection('messages').snapshots(),
-              builder: (context, snapshot) {
-                if (!snapshot.hasData) {
-                  return Center(
-                    child: CircularProgressIndicator(),
-                  );
-                }
-                final messages = snapshot.data!.docs;
-                List<Text> messagesWidgets = [];
-                for (var message in messages) {
-                  final messageText = message['text'];
-                  final messageSender = message['sender'];
-
-                  final messageWidget =
-                      Text('$messageText from $messageSender');
-                  messagesWidgets.add(messageWidget);
-                }
-                return Column(
-                  children: messagesWidgets,
-                );
-              },
-            ),
+            MessageStream(),
             Container(
               decoration: kMessageContainerDecoration,
               child: Row(
@@ -91,6 +64,7 @@ class _ChatScreenState extends State<ChatScreen> {
                 children: <Widget>[
                   Expanded(
                     child: TextField(
+                      controller: messageTextController,
                       onChanged: (value) {
                         textMessage = value;
                       },
@@ -99,6 +73,7 @@ class _ChatScreenState extends State<ChatScreen> {
                   ),
                   FlatButton(
                     onPressed: () {
+                      messageTextController.clear();
                       _firesotre.collection('messages').add({
                         'text': textMessage,
                         'sender': loggedInUser.email,
@@ -114,6 +89,89 @@ class _ChatScreenState extends State<ChatScreen> {
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class MessageStream extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return StreamBuilder<QuerySnapshot>(
+      stream: _firesotre.collection('messages').snapshots(),
+      builder: (context, snapshot) {
+        if (!snapshot.hasData) {
+          return Center(
+            child: CircularProgressIndicator(),
+          );
+        }
+        final messages = snapshot.data!.docs.reversed;
+        List<MessageBubble> messagesBubbles = [];
+        for (var message in messages) {
+          final messageText = message['text'];
+          final messageSender = message['sender'];
+
+          final messageBubble = MessageBubble(
+            sender: messageSender,
+            text: messageText,
+            isMe: loggedInUser.email == messageSender,
+          );
+          messagesBubbles.add(messageBubble);
+        }
+        return Expanded(
+          child: ListView(
+            reverse: true,
+            padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 20.0),
+            children: messagesBubbles,
+          ),
+        );
+      },
+    );
+  }
+}
+
+class MessageBubble extends StatelessWidget {
+  late final String text;
+  late final String sender;
+  late final bool isMe;
+  MessageBubble({required this.sender, required this.text, required this.isMe});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.all(10.0),
+      child: Column(
+        crossAxisAlignment:
+            isMe ? CrossAxisAlignment.end : CrossAxisAlignment.start,
+        children: [
+          Text(
+            sender,
+            style: TextStyle(
+              fontSize: 12,
+              color: Colors.black54,
+            ),
+          ),
+          Material(
+            borderRadius: BorderRadius.only(
+              topLeft: isMe ? Radius.circular(30.0) : Radius.circular(0.0),
+              topRight: isMe ? Radius.circular(0.0) : Radius.circular(30.0),
+              bottomLeft: Radius.circular(30.0),
+              bottomRight: Radius.circular(30.0),
+            ),
+            elevation: 5.0,
+            color: isMe ? Colors.lightBlueAccent : Colors.white,
+            child: Padding(
+              padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
+              child: Text(
+                text,
+                style: TextStyle(
+                  fontSize: 15,
+                  color: isMe ? Colors.white : Colors.black54,
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
