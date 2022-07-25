@@ -22,7 +22,7 @@ A messenger application for Android or iOS requires users to sign up or log in. 
 
 ### Home Screen &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp;  &emsp; &emsp; Registration Screen
 
-<img width="400" height ="500" alt="Screenshot 2022-07-18 at 2 57 32 AM" src="https://user-images.githubusercontent.com/57489839/180860642-995171d9-2db8-483d-8320-ed04c77f2211.png"> <img width="423" alt="Screenshot 2022-07-26 at 1 14 56 AM" src="https://user-images.githubusercontent.com/57489839/180861728-6dd865e4-207e-469e-8351-6a3a883ed346.png">
+<img width="212" height ="383" alt="Screenshot 2022-07-18 at 2 57 32 AM" src="https://user-images.githubusercontent.com/57489839/180860642-995171d9-2db8-483d-8320-ed04c77f2211.png"> <img width="423" alt="Screenshot 2022-07-26 at 1 14 56 AM" src="https://user-images.githubusercontent.com/57489839/180861728-6dd865e4-207e-469e-8351-6a3a883ed346.png">
 
 ### Login Screen &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp;  &emsp; &emsp; Chat Screen
 
