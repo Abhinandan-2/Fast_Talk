@@ -20,7 +20,7 @@ samples, guidance on mobile development, and a full API reference.
 
 A messenger application for Android or iOS requires users to sign up or log in. After logging in, users can start a group conversation with another user.
 
-### Home Screen &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp;Registration Screen
+### Home Screen &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; Registration Screen
 
 <img width="424" alt="Screenshot 2022-07-18 at 2 57 32 AM" src="https://user-images.githubusercontent.com/57489839/180860642-995171d9-2db8-483d-8320-ed04c77f2211.png"> &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; <img width="423" alt="Screenshot 2022-07-26 at 1 14 56 AM" src="https://user-images.githubusercontent.com/57489839/180861728-6dd865e4-207e-469e-8351-6a3a883ed346.png">
 
