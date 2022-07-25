@@ -15,7 +15,13 @@ For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
 
-[Test](https://github.com/Abhinandan-2/Fast_Talk/blob/main/images/logo.png)
+
+## About
+
+A messenger application for Android or iOS requires users to sign up or log in. After logging in, users can start a group conversation with another user.
+
+
+### Login Screen
 
 <img width="427" alt="Screenshot 2022-07-18 at 2 58 42 AM" src="https://user-images.githubusercontent.com/57489839/180859916-b984d4c8-13f2-43d7-b665-a1a05ff3d894.png">
 
